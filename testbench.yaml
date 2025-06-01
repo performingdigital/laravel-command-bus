@@ -1,0 +1,8 @@
+laravel: "@testbench"
+
+providers:
+  - Performing\CommandBus\CommandBusServiceProvider
+
+workbench:
+  start: "/"
+  install: true
