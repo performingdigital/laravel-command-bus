@@ -21,7 +21,7 @@ final class DefaultCommandBus implements CommandBus
 
     /**
      * Pass the command through the middlewares and then run it.
-     * @throws CommandException
+     * @throws CommandBusException
      */
     #[Override]
     public function dispatch(Command $command): void
@@ -29,13 +29,13 @@ final class DefaultCommandBus implements CommandBus
         $commandClass = get_class($command);
 
         if (!array_key_exists($commandClass, $this->handlers)) {
-            throw new CommandException('Command does not have handler');
+            throw new CommandBusException('Command does not have handler');
         }
 
         $handler = $this->handlers[$commandClass];
 
         if (!class_exists($handler)) {
-            throw new CommandException($handler . ' class does exists');
+            throw new CommandBusException($handler . ' class does exists');
         }
 
         $handler = App::make($handler);
@@ -47,7 +47,7 @@ final class DefaultCommandBus implements CommandBus
                     $handler->handle($command);
                 } catch (Throwable $throwable) {
                     Log::error($throwable->getMessage());
-                    throw new CommandException($throwable->getMessage());
+                    throw new CommandBusException($throwable->getMessage());
                 }
             });
     }
