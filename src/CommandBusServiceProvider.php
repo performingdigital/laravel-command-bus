@@ -8,6 +8,8 @@ class CommandBusServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton(CommandBus::class, DefaultCommandBus::class);
+        $this->app->singleton('performing-command-bus', function () {
+            return new DefaultCommandBus();
+        });
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \Performing\CommandBus\CommandBus
  *
- * @method static void dispatch($command)
+ * @method static mixed dispatch($command)
  * @method static void register($command)
  * @method static void registerMany(array $commands)
  */
@@ -15,6 +15,6 @@ class CommandBus extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \Performing\CommandBus\CommandBus::class;
+        return 'performing-command-bus';
     }
 }

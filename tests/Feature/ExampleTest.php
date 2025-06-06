@@ -1,7 +1,7 @@
 <?php
 
 use Performing\CommandBus\Command;
-use Performing\CommandBus\CommandException;
+use Performing\CommandBus\CommandBusException;
 use Performing\CommandBus\CommandHandler;
 use Performing\CommandBus\Facades\CommandBus;
 
@@ -33,4 +33,4 @@ it('dispatching a command without handler throws exception', function () {
     $command = new TestCommand();
 
     CommandBus::dispatch($command);
-})->throws(CommandException::class);
+})->throws(CommandBusException::class);
