@@ -42,7 +42,7 @@ final class DefaultCommandBus implements CommandBus
 
         return Pipeline::send($command)
             ->through($this->middlewares)
-            ->then(function ($command) use ($handler): void {
+            ->then(function ($command) use ($handler): mixed {
                 try {
                     return $handler->handle($command);
                 } catch (Throwable $throwable) {
