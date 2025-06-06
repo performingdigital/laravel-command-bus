@@ -24,7 +24,7 @@ final class DefaultCommandBus implements CommandBus
      * @throws CommandBusException
      */
     #[Override]
-    public function dispatch(Command $command): void
+    public function dispatch(Command $command): mixed
     {
         $commandClass = get_class($command);
 
@@ -40,11 +40,11 @@ final class DefaultCommandBus implements CommandBus
 
         $handler = App::make($handler);
 
-        Pipeline::send($command)
+        return Pipeline::send($command)
             ->through($this->middlewares)
             ->then(function ($command) use ($handler): void {
                 try {
-                    $handler->handle($command);
+                    return $handler->handle($command);
                 } catch (Throwable $throwable) {
                     Log::error($throwable->getMessage());
                     throw new CommandBusException($throwable->getMessage());
