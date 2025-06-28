@@ -6,7 +6,7 @@ namespace Performing\CommandBus;
 
 interface CommandBus
 {
-    public function dispatch(Command $command): mixed;
+    public function dispatch(object $command): mixed;
 
     public function register(string $command, string $handler): void;
 

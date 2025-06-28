@@ -24,7 +24,7 @@ final class DefaultCommandBus implements CommandBus
      * @throws CommandBusException
      */
     #[Override]
-    public function dispatch(Command $command): mixed
+    public function dispatch(object $command): mixed
     {
         $commandClass = get_class($command);
 
