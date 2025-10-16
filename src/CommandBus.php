@@ -11,4 +11,6 @@ interface CommandBus
     public function register(string $command, string $handler): void;
 
     public function registerMany(array $array): void;
+
+    public function handlers(): array;
 }

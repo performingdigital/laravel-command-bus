@@ -65,4 +65,15 @@ final class DefaultCommandBus implements CommandBus
             $this->register($command, $handler);
         }
     }
+
+    /**
+     * Get all registered handlers.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    public function handlers(): array
+    {
+        return $this->handlers;
+    }
 }

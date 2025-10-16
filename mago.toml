@@ -1,156 +1,62 @@
 [source]
-paths = ["app", "app-modules"]
-includes = ["./vendor", "./app-modules/sync"]
-excludes = ["./vendor/composer", "./app-modules/sync/vendor/composer"]
+paths = ["src"]
+includes = ["./vendor"]
+excludes = [
+  "./vendor/composer",
+  "./vendor/symfony/polyfill-iconv/Resources/charset",
+]
 
-[format]
-print_width = 180
-tab_width = 4
-use_tabs = false
-null_type_hint = "question"
-always_break_named_arguments_list = false
-preserve_breaking_member_access_chain = true
-preserve_breaking_argument_list = true
-preserve_breaking_array_like = true
-preserve_breaking_parameter_list = true
-preserve_breaking_attribute_list = true
-preserve_breaking_conditional_expression = true
+#[analyzer]
+#nullable-issues = false
+#ignore = ["mixed-argument"]
+
+[formatter]
+print-width = 180
+tab-width = 4
+use-tabs = false
+null-type-hint = "question"
+space-after-logical-not-unary-prefix-operator = true
+space-before-arrow-function-parameter-list-parenthesis = true
+always-break-named-arguments-list = false
+preserve-breaking-member-access-chain = true
+preserve-breaking-argument-list = true
+preserve-breaking-array-like = true
+preserve-breaking-parameter-list = true
+preserve-breaking-attribute-list = true
+preserve-breaking-conditional-expression = true
 
 [linter]
-default_plugins = true
-plugins = ["symfony", "laravel"]
+integrations = ["symfony", "laravel"]
 
-# MAINTENABILITY
-[[linter.rules]]
-name = "maintainability/long-inheritance-chain"
-level = "off"
-
-[[linter.rules]]
-name = "maintainability/too-many-properties"
-level = "off"
-
-[[linter.rules]]
-name = "maintainability/too-many-enum-cases"
-level = "off"
-
-[[linter.rules]]
-name = "maintainability/excessive-parameter-list"
-level = "off"
-
-[[linter.rules]]
-name = "maintainability/halstead"
-level = "off"
-
-[[linter.rules]]
-name = "maintainability/too-many-methods"
-level = "off"
-
-[[linter.rules]]
-name = "maintainability/kan-defect"
-level = "off"
-
-[[linter.rules]]
-name = "maintainability/cyclomatic-complexity"
-level = "off"
-
-[[linter.rules]]
-level = "off"
-name = "comment/no-empty-comments"
-
-[[linter.rules]]
-name = "comment/no-untagged-fixme"
-level = "off"
-
-
-# STRICTNESS
-[[linter.rules]]
-name = "strictness/require-return-type"
-level = "off"
-
-[[linter.rules]]
-name = "strictness/require-parameter-type"
-ignore_arrow_function = true
-ignore_closure = true
-
-[[linter.rules]]
-name = "strictness/no-shorthand-ternary"
-level = "off"
-
-[[linter.rules]]
-name = "strictness/no-empty-construct"
-level = "off"
-
-[[linter.rules]]
-name = "strictness/no-assignment-in-condition"
-level = "off"
-
-[[linter.rules]]
-name = "strictness/require-strict-behavior"
-level = "off"
-
-[[linter.rules]]
-level = "off"
-name = "security/no-literal-password"
-
-[[linter.rules]]
-name = "strictness/require-identity-comparison"
-level = "off"
-
-
-# BEST PRACTICES
-[[linter.rules]]
-name = "best-practices/no-else-clause"
-level = "off"
-
-[[linter.rules]]
-name = "best-practices/literal-named-argument"
-level = "off"
-
-[[linter.rules]]
-name = "best-practices/no-boolean-literal-comparison"
-level = "off"
-
-[[linter.rules]]
-name = "best-practices/no-boolean-flag-parameter"
-level = "off"
-
-# SAFETY
-[[linter.rules]]
-name = "safety/no-error-control-operator"
-level = "off"
-
-# PHPUNIT
-[[linter.rules]]
-name = "php-unit/assertions-style"
-style = "this"
-
-[[linter.rules]]
-name = "php-unit/strict-assertions"
-level = "off"
-
-# NAMING
-[[linter.rules]]
-name = "naming/interface"
-psr = false
-
-[[linter.rules]]
-name = "naming/trait"
-psr = false
-
-[[linter.rules]]
-name = "naming/class"
-psr = false
-
-# HELP
-[[linter.rules]]
-name = "redundancy/redundant-file"
-level = "off"
-
-# CONSIDER ENABLING
-[[linter.rules]]
-name = "analysis/override-attribute"
-level = "off"
-
-[[linter.rules]]
-name = "comment/no-untagged-todo"
-level = "off"
+[linter.rules]
+# class = { psr = false }
+cyclomatic-complexity = { enabled = false }
+excessive-parameter-list = { enabled = false }
+halstead = { enabled = false }
+# interface = { psr = false }
+kan-defect = { enabled = false }
+literal-named-argument = { enabled = false }
+# long-inheritance-chain = { enabled = false }
+# no-assignment-in-condition = { enabled = false }
+no-boolean-flag-parameter = { enabled = false }
+no-boolean-literal-comparison = { enabled = false }
+no-else-clause = { enabled = false }
+# no-empty-comments = { enabled = false }
+# no-empty-construct = { enabled = false }
+no-error-control-operator = { enabled = false }
+no-literal-password = { enabled = false }
+no-shorthand-ternary = { enabled = false }
+# no-untagged-fixme = { enabled = false }
+# no-untagged-todo = { enabled = false }
+# override-attribute = { enabled = false }
+# redundant-file = { enabled = false }
+# require-identity-comparison = { enabled = false }
+# require-parameter-type = { ignore_arrow_function = true, ignore_closure = true }
+# require-return-type = { enabled = false }
+# require-strict-behavior = { enabled = false }
+strict-assertions = { enabled = false }
+too-many-enum-cases = { enabled = false }
+too-many-methods = { enabled = false }
+too-many-properties = { enabled = false }
+# trait = { psr = false }
+yoda-conditions = { enabled = false }

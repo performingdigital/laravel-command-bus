@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \Performing\CommandBus\CommandBus
  *
+ * @method static array handlers()
  * @method static mixed dispatch($command)
  * @method static void register($command)
  * @method static void registerMany(array $commands)

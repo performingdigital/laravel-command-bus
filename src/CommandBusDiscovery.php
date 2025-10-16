@@ -19,6 +19,13 @@ class CommandBusDiscovery
     {
         $this->locations[] = $location;
 
+        $this->clearCache();
+
+        return $this;
+    }
+
+    public function clearCache(): self
+    {
         Cache::forget('command-bus-discovery');
 
         return $this;
