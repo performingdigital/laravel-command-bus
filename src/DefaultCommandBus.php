@@ -47,7 +47,7 @@ final class DefaultCommandBus implements CommandBus
                     return $handler->handle($command);
                 } catch (Throwable $throwable) {
                     Log::error($throwable->getMessage());
-                    throw new CommandBusException($throwable->getMessage());
+                    throw $throwable;
                 }
             });
     }
