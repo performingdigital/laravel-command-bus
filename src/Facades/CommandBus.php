@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @method static array handlers()
  * @method static mixed dispatch($command)
- * @method static void register($command)
+ * @method static void register($command, $handler)
  * @method static void registerMany(array $commands)
  */
 class CommandBus extends Facade
