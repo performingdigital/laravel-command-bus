@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Pipeline;
 use Override;
-use Performing\CommandBus\CommandBus;
+
 use Throwable;
 
 final class DefaultCommandBus implements CommandBus
@@ -28,13 +28,13 @@ final class DefaultCommandBus implements CommandBus
     {
         $commandClass = get_class($command);
 
-        if (!array_key_exists($commandClass, $this->handlers)) {
+        if (! array_key_exists($commandClass, $this->handlers)) {
             throw new CommandBusException('Command does not have handler');
         }
 
         $handler = $this->handlers[$commandClass];
 
-        if (!class_exists($handler)) {
+        if (! class_exists($handler)) {
             throw new CommandBusException($handler . ' class does exists');
         }
 
@@ -42,7 +42,7 @@ final class DefaultCommandBus implements CommandBus
 
         return Pipeline::send($command)
             ->through($this->middlewares)
-            ->then(function ($command) use ($handler): mixed {
+            ->then(static function ($command) use ($handler): mixed {
                 try {
                     return $handler->handle($command);
                 } catch (Throwable $throwable) {

@@ -4,12 +4,12 @@ namespace Performing\CommandBus\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
+
 use Performing\CommandBus\Facades\CommandBus;
 use Performing\CommandBus\Facades\CommandBusDiscovery;
 use Symfony\Component\Console\Terminal;
 
-use function Laravel\Prompts\info;
+
 use function Laravel\Prompts\note;
 use function Laravel\Prompts\warning;
 
@@ -89,7 +89,7 @@ class CommandBusListCommand extends Command
 
     protected function displayForCli(Collection $handlers): void
     {
-        $terminalWidth = (new Terminal)->getWidth();
+        $terminalWidth = new Terminal()->getWidth();
 
         $output = $handlers->map(function ($handler) use ($terminalWidth) {
             $status = $handler['status'] === 'registered' ? '✓' : '•';
@@ -104,14 +104,14 @@ class CommandBusListCommand extends Command
                     $statusColor,
                     $status,
                     $command,
-                    $handlerClass
+                    $handlerClass,
                 );
             }
 
             // Calculate dots for spacing
-            $statusPart = "  $status ";
-            $commandPart = "$command › ";
-            $sourcePart = " [$source]";
+            $statusPart = "  {$status} ";
+            $commandPart = "{$command} › ";
+            $sourcePart = " [{$source}]";
             $dotsLength = max($terminalWidth - mb_strlen($statusPart . $commandPart . $handlerClass . $sourcePart) - 2, 0);
             $dots = str_repeat('.', $dotsLength);
 
@@ -122,7 +122,7 @@ class CommandBusListCommand extends Command
                 $command,
                 $dots,
                 $handlerClass,
-                $sourcePart
+                $sourcePart,
             );
         });
 
@@ -146,7 +146,7 @@ class CommandBusListCommand extends Command
         // Show warnings if needed
         $unregistered = $handlers->where('status', 'discovered')->count();
         if ($unregistered > 0) {
-            warning("$unregistered handler(s) discovered but not registered. They cannot be dispatched.");
+            warning("{$unregistered} handler(s) discovered but not registered. They cannot be dispatched.");
         }
     }
 
@@ -171,10 +171,10 @@ class CommandBusListCommand extends Command
         $registered = $handlers->where('status', 'registered')->count();
         $total = $handlers->count();
 
-        $text = "Showing [$total] handlers ($registered registered)";
+        $text = "Showing [{$total}] handlers ({$registered} registered)";
         $offset = max($terminalWidth - mb_strlen($text) - 2, 0);
         $spaces = str_repeat(' ', $offset);
 
-        return $spaces . "<fg=blue;options=bold>$text</>";
+        return $spaces . "<fg=blue;options=bold>{$text}</>";
     }
 }

@@ -3,6 +3,7 @@
 namespace Performing\CommandBus\Commands;
 
 use Illuminate\Console\Command;
+use Tempest\Discovery\DiscoveryCache;
 
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\note;
@@ -13,8 +14,10 @@ class CommandBusClearCommand extends Command
 
     protected $description = 'Clear the command bus discovery cache';
 
-    public function handle(): int
+    public function handle(DiscoveryCache $cache): int
     {
+        $cache->clear();
+
         info('Command bus discovery cache cleared successfully.');
         note('Handlers will be re-discovered automatically on next request.');
 

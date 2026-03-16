@@ -7,6 +7,4 @@ namespace Performing\CommandBus;
 use Attribute;
 
 #[Attribute]
-final class CommandBusHandler
-{
-}
+final class CommandBusHandler {}
