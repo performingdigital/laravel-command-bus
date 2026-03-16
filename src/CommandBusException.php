@@ -6,6 +6,6 @@ namespace Performing\CommandBus;
 
 use ErrorException;
 
-class CommandBusException extends ErrorException
+final class CommandBusException extends ErrorException
 {
 }

@@ -1,14 +1,39 @@
 [source]
 paths = ["src"]
-includes = ["./vendor"]
+includes = ["./vendor", "_ide_helper_models.php", "database"]
 excludes = [
   "./vendor/composer",
-  "./vendor/symfony/polyfill-iconv/Resources/charset",
 ]
 
-#[analyzer]
-#nullable-issues = false
-#ignore = ["mixed-argument"]
+[analyzer]
+find-unused-expressions = true
+find-unused-definitions = true
+analyze-dead-code = true
+check-throws = true
+check-missing-override = true
+find-unused-parameters = true
+check-missing-type-hints = true
+check-closure-missing-type-hints = false
+check-arrow-function-missing-type-hints = false
+enforce-class-finality = true
+require-api-or-internal = false
+
+# Enable strict checks
+strict-list-index-checks = true
+no-boolean-literal-comparison = true
+
+# Disable lenient behaviors
+allow-possibly-undefined-array-keys = false
+trust-existence-checks = false
+
+ignore = [
+  { code = "missing-template-parameter", in = "app/" },
+  { code = "mixed-method-access", in = "app/" },
+  { code = "mixed-assignment", in = "app/" },
+  { code = "imprecise-type", in = "app/" },
+]
+
+plugins = ["psl", "laravel"]
 
 [formatter]
 print-width = 180
@@ -29,34 +54,31 @@ preserve-breaking-conditional-expression = true
 integrations = ["symfony", "laravel"]
 
 [linter.rules]
-# class = { psr = false }
+class-name = { psr = false }
 cyclomatic-complexity = { enabled = false }
 excessive-parameter-list = { enabled = false }
 halstead = { enabled = false }
-# interface = { psr = false }
+interface-name = { psr = false }
 kan-defect = { enabled = false }
 literal-named-argument = { enabled = false }
-# long-inheritance-chain = { enabled = false }
-# no-assignment-in-condition = { enabled = false }
 no-boolean-flag-parameter = { enabled = false }
-no-boolean-literal-comparison = { enabled = false }
+#no-boolean-literal-comparison = { enabled = false }
+no-debug-symbols = { enabled = false }
 no-else-clause = { enabled = false }
-# no-empty-comments = { enabled = false }
-# no-empty-construct = { enabled = false }
+no-empty = { enabled = false }
 no-error-control-operator = { enabled = false }
 no-literal-password = { enabled = false }
+no-request-all = { enabled = false }
 no-shorthand-ternary = { enabled = false }
-# no-untagged-fixme = { enabled = false }
-# no-untagged-todo = { enabled = false }
-# override-attribute = { enabled = false }
-# redundant-file = { enabled = false }
-# require-identity-comparison = { enabled = false }
-# require-parameter-type = { ignore_arrow_function = true, ignore_closure = true }
-# require-return-type = { enabled = false }
-# require-strict-behavior = { enabled = false }
-strict-assertions = { enabled = false }
+prefer-first-class-callable = { enabled = false }
 too-many-enum-cases = { enabled = false }
 too-many-methods = { enabled = false }
 too-many-properties = { enabled = false }
-# trait = { psr = false }
 yoda-conditions = { enabled = false }
+# no-untagged-fixme = { enabled = false }
+# no-untagged-todo = { enabled = false }
+# require-identity-comparison = { enabled = false }
+# require-parameter-type = { ignore_arrow_function = true, ignore_closure = true }
+# require-return-type = { enabled = false }
+# strict-assertions = { enabled = false }
+# trait = { psr = false }

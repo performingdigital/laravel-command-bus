@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Facade;
  * @see \Performing\CommandBus\CommandBusDiscovery
  *
  * @method static array handlers()
- * @method static static add(string $location)
  */
 class CommandBusDiscovery extends Facade
 {
